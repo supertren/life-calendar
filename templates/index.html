@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Calendar</title>
+    <style>
+        :root { --bg-color: #f4f4f4; --box-empty: #ffffff; --box-filled: #2ecc71; --border-color: #333; }
+        body { font-family: 'Courier New', monospace; background-color: var(--bg-color); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .controls { margin-bottom: 20px; padding: 10px; background: #fff; border: 1px solid var(--border-color); }
+        /* Matriz de 52 columnas (semanas) */
+        .calendar-grid { display: grid; grid-template-columns: repeat(52, 10px); gap: 2px; background-color: #ccc; padding: 2px; border: 1px solid var(--border-color); }
+        .week { width: 10px; height: 10px; background-color: var(--box-empty); }
+        .week.filled { background-color: var(--box-filled); }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <form method="GET" action="/">
+            <label>Edad (T): </label>
+            <input type="number" name="age" value="{{.Age}}" min="0" max="90">
+            <button type="submit">Calcular</button>
+        </form>
+        <div><small>Semanas consumidas: {{.FilledWeeks}} / {{.TotalWeeks}}</small></div>
+    </div>
+    <div class="calendar-grid">
+        {{range .Weeks}}<div class="week {{if .Filled}}filled{{end}}"></div>{{end}}
+    </div>
+</body>
+</html>

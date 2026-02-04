@@ -1,0 +1,23 @@
+groups:
+  - name: life-calendar-alerts
+    rules:
+      # Regla 1: El objetivo no responde (up == 0) durante 1 minuto
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instancia {{ $labels.instance }} caída"
+          description: "El servicio Life Calendar ha dejado de responder al scrape de Prometheus."
+
+      # Regla 2: Latencia alta (p99 > 1s)
+      # Nota: Usamos histogram_quantile sobre tu métrica http_request_duration_seconds
+      - alert: HighLatency
+        expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Latencia alta detectada"
+          description: "El p99 de la latencia es superior a 1s."

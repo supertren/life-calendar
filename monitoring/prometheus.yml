@@ -2,6 +2,11 @@ global:
   scrape_interval: 15s     # Frecuencia de muestreo (Nyquist-Shannon compliant para eventos >30s)
   evaluation_interval: 15s
 
+# --- SECCIÓN NUEVA ---
+rule_files:
+  - "alerts.yml"
+# ---------------------
+
 scrape_configs:
   - job_name: 'life-calendar-service'
     metrics_path: '/metrics'

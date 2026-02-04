@@ -2,7 +2,7 @@ FROM prom/prometheus:v2.45.0
 
 # Inyectar configuración personalizada en la ruta estándar
 COPY prometheus.yml /etc/prometheus/prometheus.yml
-
+COPY alerts.yml /etc/prometheus/alerts.yml
 # Exponer puerto del TSDB (Time Series Database)
 EXPOSE 9090
 

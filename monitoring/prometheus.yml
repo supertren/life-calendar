@@ -1,0 +1,14 @@
+global:
+  scrape_interval: 15s     # Frecuencia de muestreo (Nyquist-Shannon compliant para eventos >30s)
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'life-calendar-service'
+    metrics_path: '/metrics'
+    scheme: 'https'        # Render fuerza TLS, es mandatorio
+    static_configs:
+      # IMPORTANTE: Reemplaza este target con tu URL de producción real
+      - targets: ['life-calendar-tu-app.onrender.com'] 
+        labels:
+          environment: 'production'
+          service: 'life-calendar'

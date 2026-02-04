@@ -23,5 +23,3 @@ COPY --from=builder /app/life-calendar .
 ENV PORT=8080
 EXPOSE 8080
 CMD ["./life-calendar"]
-
-

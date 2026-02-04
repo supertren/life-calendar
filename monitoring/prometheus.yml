@@ -7,7 +7,7 @@ scrape_configs:
     metrics_path: '/metrics'
     scheme: 'https'        # Render fuerza TLS, es mandatorio
     static_configs:
-      # IMPORTANTE: Reemplaza este target con tu URL de producción real
+      # IMPORTANTE: Reemplaza este target con tu URL de producción real que ya desplegaste
       - targets: ['https://life-calendar-cfo3.onrender.com'] 
         labels:
           environment: 'production'
